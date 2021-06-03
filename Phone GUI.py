@@ -8,8 +8,6 @@ conn=sqlite3.connect("phone.db")
 #conn.execute('''CREATE TABLE PHONETABLE (NAME TEXT NOT NULL,
                             #PHONENUMBER CHAR(20) NOT NULL);''')
 def save():
-    
-    
     name=e1.get()
     phone=e2.get()
     if name=="":
@@ -24,20 +22,15 @@ def save():
         if len(data)!=0:
             messagebox.showerror("Error","Name is already existing can't insert")
         else:
-            
             conn.execute("INSERT  INTO PHONETABLE(NAME,PHONENUMBER)VALUES(?,?)",(name,phone))
-            messagebox.showinfo("Information","Successfully inserted")
-            
+            messagebox.showinfo("Information","Successfully inserted"
 def update():
   name=e1.get()
   name=name.upper()
-  
-  
   query="SELECT NAME,PHONENUMBER FROM PHONETABLE WHERE NAME = '"+name+"'"  
   cursor=conn.execute(query)
   data=cursor.fetchall()
   if len(data)==0:
-      
     messagebox.showerror("Error","Name not found")
   else:
     phone=e2.get()
@@ -87,22 +80,6 @@ def delete():
             messagebox.showinfo("Information","Successfully Deleted")
             e1.delete(0,END)
             e2.delete(0,END)
-    
-            
-            
-            
-        
-
-    
-  
-
-            
-        
-            
-    
-        
-    
-
 
 def close():
     answer=messagebox.askyesno("Confirm","Are you sure you want to exit")
@@ -112,9 +89,6 @@ def close():
 def clear():
     e1.delete(0,END)
     e2.delete(0,END)
-    
-        
-    
 window=tkinter.Tk()
 window.geometry("500x400+100+100")
 window.resizable(0,0)
@@ -135,7 +109,6 @@ b2.grid(row=4,column=1)
 b3=Button(window,text="Search",font="Times 15 bold",command=search)
 b3.grid(row=4,column=2)
 b4=Button(window,text="Clear",font="Times 15 bold",padx=12,command=clear)
-
 b4.grid(row=1,column=2)
 b5=Button(window,text="Delete",font="Times 15 bold",command=delete)
 b5.grid(row=2,column=2)
